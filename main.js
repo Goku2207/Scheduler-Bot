@@ -267,7 +267,7 @@ const config_bot = { zuliprc: "zuliprc" };
 
         const readParams =  await {
             anchor: "newest",
-            num_before: 1,
+            num_before: 10,
             num_after: 0,
             narrow: [
                 {operator: "sender", operand: "user511348@prjtesting.zulipchat.com"/*User-email used for searching and sending */ }, // get all users 
@@ -280,7 +280,7 @@ const config_bot = { zuliprc: "zuliprc" };
 
         const reg_parameter =  await {
             anchor: "newest",
-            num_before: 1,
+            num_before: 10,
             num_after: 0,
             narrow: [
                 {operator: "sender", operand: "user511348@prjtesting.zulipchat.com"   }],
