@@ -36,6 +36,15 @@ async function sends(message , sender_id , type , receiver_id , topic = null ){
     }
 }
 
+function fileCreator(emailId,Key,userId, urls){
+
+    fs.writeFile(userId+'.txt','[api]\nemail='+emailId+'\nkey='+Key +'\nsite=https://'+urls +'.zulipchat.com',
+             function (err) {
+        if (err) throw err;
+     //   console.log('Saved!');
+      });
+}
+
 async  function ReadJsonFile(fileName){
     //console.log(fileName);
     fs.readFile(fileName, function(err, data){
