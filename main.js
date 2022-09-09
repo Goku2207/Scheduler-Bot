@@ -10,6 +10,32 @@ function DeleteFile(date_time){
       });
 }
 
+async function sends(message , sender_id , type , receiver_id , topic = null ){
+    
+    const config_id = await { zuliprc: sender_id+".txt"  }; /* the document will be in the form of the sender id*/
+    const client = await zulipInit(config_id);
+    //console.log(client);
+    let params = {} ; 
+    if(type == 'private' )
+    {
+        params = {
+            to: [receiver_id],
+            type: "private",
+            content: message ,
+        };
+     console.log(await client.messages.send(params));
+
+    }else {
+        params = {
+            to: receiver_id  ,
+            type: "stream",
+            topic: topic,
+            content: message,
+        };
+     console.log(await client.messages.send(params));
+    }
+}
+
 async  function ReadJsonFile(fileName){
     //console.log(fileName);
     fs.readFile(fileName, function(err, data){
