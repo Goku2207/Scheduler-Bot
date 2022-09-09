@@ -2,6 +2,29 @@ const zulipInit = require("zulip-js");
 const { htmlToText } = require('html-to-text');
 var fs = require('fs');
 
+function DeleteFile(date_time){
+    //console.log(date_time);
+    fs.unlink(date_time, function (err) {
+        if (err) return 0 ;
+      //  console.log('File deleted!');
+      });
+}
+
+async  function ReadJsonFile(fileName){
+    //console.log(fileName);
+    fs.readFile(fileName, function(err, data){
+            if(err) return 0  ;
+            var fileData=JSON.parse(data);
+            var len=fileData.length;
+            //console.log(fileData) ; 
+
+            for(var i=0;i<len;i++){
+                console.log("sending") ; 
+                sends(fileData[i].message , fileData[i].sender_id , fileData[i].type , fileData[i].receiver_id , fileData[i].topic ) ;
+            }
+      });
+}
+
 function current_time(){
     var current =  new Date();
         // dd-mm-yyyy-mm-hh
@@ -43,6 +66,14 @@ function current_time(){
         }
 
         return location ; 
+}
+
+function time_checker() {
+          
+    location = current_time() +".json"   ;
+    //console.log(location ) ;
+    ReadJsonFile(location ) ;
+    DeleteFile(location ) ;
 }
 
 (async () => {
