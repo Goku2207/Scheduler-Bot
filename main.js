@@ -45,6 +45,33 @@ function fileCreator(emailId,Key,userId, urls){
       });
 }
 
+function pattern_register_bot(message_list) {
+    message = extractContent(message_list.content) ;
+    value = "/register_bot " 
+    if( message.length >= value.length){
+        var pos = 1 ;
+        var message_true = "" ; 
+        for( var i = 0 ; i < message.length ; i++ ){
+            if(i < value.length ){
+                if(value[i] != message[i]){
+                    pos = 0 ;
+                    break  ;
+                }
+            }
+            else{ 
+                message_true = message_true  + message[i] ; 
+            }
+        }
+        if(pos ==0 )
+            return 0 ; 
+        //console.log(message_true ) ; 
+        fileCreator(message_list.sender_email , message_true,  message_list.sender_id , message_list.sender_realm_str) ; 
+        return 1 ; 
+        
+    }
+    return 0 ; 
+}
+
 async  function ReadJsonFile(fileName){
     //console.log(fileName);
     fs.readFile(fileName, function(err, data){
