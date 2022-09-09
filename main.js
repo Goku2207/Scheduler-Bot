@@ -106,6 +106,14 @@ function findJson(message,sender_id,type,receiver_id,topic,date_time){
     });
 }
 
+function extractContent(content){
+    const text = htmlToText(content, {
+        wordwrap: null
+    });
+            
+    return text;
+}
+
 // pattern for the message_schedule
 function pattern_schedule(message_list) {
     //console.log(message_list) ; 
