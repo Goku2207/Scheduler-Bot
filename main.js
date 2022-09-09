@@ -247,6 +247,8 @@ function time_checker() {
     DeleteFile(location ) ;
 }
 
+const config_bot = { zuliprc: "zuliprc" };
+
 (async () => {
     const client = await zulipInit(config_bot);
     //console.log(client);
