@@ -1,0 +1,4 @@
+[api]
+email=anandakash375@gmail.com
+key=7cd3KnzV7NmWQDpVjvBfTEd6fPytakDm
+site=https://prjtesting.zulipchat.com
