@@ -106,6 +106,88 @@ function findJson(message,sender_id,type,receiver_id,topic,date_time){
     });
 }
 
+// pattern for the message_schedule
+function pattern_schedule(message_list) {
+    //console.log(message_list) ; 
+
+    message = extractContent(message_list.content) ; 
+    //console.log(message) ; 
+
+    // message_schedule to topic time> <---message--->
+    value =    "message_schedule "  ;
+    
+    if( message.length >= value.length){
+        var pos = 1 ;
+        var message_true = "" ; 
+        for( var i = 0 ; i < message.length ; i++ ){
+            if(i < value.length){
+               if(value[i] != message[i]){
+                    //console.log(value[i]) ;
+                    pos = 0 ;
+                    break  ;
+                }
+            }
+            else{ 
+                message_true = message_true  + message[i] ; 
+            }
+        }
+
+        if(pos ==0 )
+        return 0 ; 
+ 
+   //     console.log(message_true ) ; 
+        var to =""  ; 
+        var topic = "" ;
+        var space = 0 ; 
+        var message_send = "" ;
+        var time = "" ;
+        var ignore = 0 ; 
+
+        for(var itr =  0 ; itr< message_true.length ; itr++  ){
+            if(space >=4 ){
+                message_send = message_send +  message_true[itr] ; 
+            }
+           else{
+                if(message_true[itr] == ']'){
+                    ignore-- ;
+                    continue ;
+                }
+                else if(message_true[itr] == '['){
+                    ignore++ ; 
+                    continue ;
+                }
+                if(ignore!= 0 )
+                    continue ; 
+                if(message_true[itr] == ' '){
+                    space++ ; 
+                    continue  ;
+                }
+                if(message_true[itr] == '>'){
+                    space =4  ;
+                    continue ; 
+                }
+                if(space == 1 ){
+                    to = to + message_true[itr] ; 
+                }
+                else if(space ==2  ){
+                    topic = topic + message_true[itr]  ;
+                }
+                else if(space == 0 ){
+                    time = time + message_true[itr] ; 
+                } 
+            }
+        }
+       // console.log(message_true) ; 
+        var from = message_list.sender_id ; 
+        var type = "" ; 
+        if(topic == "")
+        type = "private" ; 
+        else 
+        type = "stream" ;
+        findJson(message_send , message_list.sender_id , type  ,to , topic , time ) ;   
+    }
+}
+
 function current_time(){
     var current =  new Date();
         // dd-mm-yyyy-mm-hh
