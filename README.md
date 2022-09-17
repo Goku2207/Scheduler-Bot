@@ -1,8 +1,8 @@
-Project:- Scheduler bot using zulip API
+Project:- Text Scheduler bot using zulip API
 -------------------------------------------------------------------------
 Command used 
 
-The Scheduler bot is used to schedule a  message for a particular timeframe.
+The Text Scheduler bot is used to schedule a  message for a particular timeframe.
 This bot can help in colborating with the offshore team especially with a 
 timezone gap.
 
@@ -22,12 +22,12 @@ We may schedule a private message or a stream:-
 	Command for scheduling a private message 
 		message_schedule dd-mm-yyyy-hh-mm private-message-address> <--message content -->
 	eg:-
-	message_schedule 02-05-2021-04-48 priyaritu99@gmail.com> Hey buddy how are you!
+	message_schedule 02-09-2022-21-00 priyaritu99@gmail.com> Hey buddy how are you!
 
 	
 	Command for scheduling a message to the stream
 		message_schedule dd-mm-yyyy-hh-mm stream topic > <--message content -->
 	
 	eg:-
-	message_schedule 02-05-2021-04-46 test_bot-bot Castle > Hey guys how is the project going on!
+	message_schedule 02-09-2022-21-05 test_bot-bot Castle > Hey guys how is the project going on!
 _____________________________________________________________________________________________________ 
